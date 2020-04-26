@@ -31,7 +31,14 @@ class App extends Component {
           in = {this.state.showBlock}
           timeout = {1000}
           mountOnEnter
-          unmountOnExit>
+          unmountOnExit
+          onEnter = {() => console.log('onEnter')}
+          onEntering = {() => console.log('onEntering')}
+          onEntered = {() => console.log('onEntered')}
+          onExit = {() => console.log('onExit')}
+          onExiting = {() => console.log('onExiting')}
+          onExited = {() => console.log('onExited')}>
+          
             {state => (
               <div 
                 style = {{
@@ -47,16 +54,7 @@ class App extends Component {
             
         </Transition>
         <br/>
-        <Transition
-          in = {this.state.modalIsOpen}
-          timeout = {400}
-          mountOnEnter
-          unmountOnExit>
-            {state => (
-              <Modal show={state} closed={this.closeModal}/>
-            )}
-        </Transition>
-        
+        <Modal show={this.state.modalIsOpen} closed={this.closeModal}/>   
         <Backdrop show={this.state.modalIsOpen} />
         <button className="Button" onClick={this.showModal}>Open Modal</button>
         <h3>Animating Lists</h3>
